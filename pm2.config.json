@@ -58,16 +58,10 @@
       }
     },
     {
-      "name": "front_api",
-      "script": "front/api/index.js",
-      "out_file": "/var/log/front_api.log",
-      "error_file": "/var/log/front_api.log",
-    },
-    {
-      "name": "front_web",
-      "script": "front/web/server.js",
-      "out_file": "/var/log/front_web.log",
-      "error_file": "/var/log/front_web.log",
+      "name": "visualization_agent",
+      "script": "./server/index.js",
+      "out_file": "/var/log/server.log",
+      "error_file": "/var/log/server.log",
     }
   ]
 }

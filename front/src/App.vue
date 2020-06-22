@@ -99,22 +99,31 @@ export default {
 
   methods: {
     retrieveNews() {
-      const uri = 'http://localhost:5000/news'
+      const uri = 'http://localhost:5000/api/v1/news'
       axios.get(uri, {
       }).then(response => {
-        this.newsItems = response.data
+        const mapSentimentFunction = this.mapSentiment
+        this.newsItems = response.data.news.map(function(news){
+          news.sentiment = mapSentimentFunction(news.sentiment.compound)
+          return news
+        })
+
       }).catch(e => {
         console.error(e)
       })
     }, 
     retrieveEntitites() {
-      const uri = 'http://localhost:5000/entities'
+      const uri = 'http://localhost:5000/api/v1/entities'
       axios.get(uri, {
       }).then(response => {
-        this.newsItems = response.data
+        this.entitiesItems = response.data.entities
       }).catch(e => {
         console.error(e)
       })
+    },
+
+    mapSentiment (sentiment) {
+      return (sentiment > 0.5) ? 'positive' : ((sentiment < -0.5) ? 'negative' : 'neutral')
     },
   },
 };

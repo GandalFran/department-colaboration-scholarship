@@ -24,6 +24,7 @@ class PersistenceAgent(Agent):
       db = os.environ['MONGODB']
       collection = os.environ['MONGOCOLLECTION']
       mongo = MongoClient(uri)[db][collection]
+      print('pushing in mongodb')
       mongo.update(
         {"internalId": "aDocument"},
         { "$push": {

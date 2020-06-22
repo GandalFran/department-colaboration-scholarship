@@ -18,6 +18,8 @@ app.use(cors(corsOptions));
 // Parse request with content type json
 app.use(bodyParser.json());
 
+
+
 // Connect to the database
 db.mongoose
   .connect(db.url, {

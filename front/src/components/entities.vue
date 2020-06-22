@@ -12,6 +12,7 @@
       >
         <v-card>
           <div
+            v-bind="cache"
             ref="canvas"
             class="Canvas"
           />
@@ -62,7 +63,7 @@
     },
     computed: {
       maxEntities () {
-        return (this.cache.length > 0) ? this.cache.length : 1;
+        return (this.cache.length > 0) ? (this.cache.length > 100 ? 100: this.cache.length) : 1;
       },
     },
     watch: {
@@ -73,26 +74,25 @@
     },
     methods: {
       onSliderUpdate () {
-        this.update(null, false)
+        this.update()
       },
       mapToChart (entities) {
-        
-        console.log(entities)
-        const relation = entities[0]
-        // build the entity information
-        this.cache.push({
-          id: this.toId(relation),
-          size: relation.relations,
-          name: relation.name,
-          type: relation.type,
-          info: relation.info,
-          children: relation.related,
-          color: this.toColor(relation),
+        const toIdFunction = this.toId
+        this.cache = entities.map(function(entity){
+          console.log(entity)
+          return {
+            id: toIdFunction(entity),
+            size: entity.children.length,
+            name: entity.name,
+            type: entity.type,
+            children: entity.children.map(function(child){
+              return toIdFunction({name: child.name, type:child.type })
+            })
+          }
+        }).sort(function (e1, e2) {
+          return (e2.size - e1.size);
         })
-        
-        this.cache.sort(function (e1, e2) {
-          return (e1.size === e2.size) ? (e1.relatedEntities.length - e2.relatedEntities.length) : (e2.size - e1.size);
-        })
+        console.log(this.cache)
 
       },
       update () {
@@ -107,7 +107,6 @@
           networkSeries.dataFields.name = 'name'
           networkSeries.dataFields.id = 'id'
           networkSeries.dataFields.value = 'size'
-          networkSeries.dataFields.color = 'color'
           networkSeries.nodes.template.label.text = '{name}'
           networkSeries.fontSize = 8
           networkSeries.linkWithStrength = 0
@@ -116,31 +115,7 @@
       },
       toId (e) {
         return `${e.type}_${e.name}`
-      },
-      toColor (e) {
-          // src: https://stackoverflow.com/questions/3426404/create-a-hexadecimal-colour-based-on-a-string-with-javascript
-          const hashCode = function (str) { // java String#hashCode
-              var hash = 0;
-              for (var i = 0; i < str.length; i++) {
-                 hash = str.charCodeAt(i) + ((hash << 5) - hash);
-              }
-              return hash;
-          } 
-          const intToRGB = function (i){
-              var c = (i & 0x00FFFFFF)
-                  .toString(16)
-                  .toUpperCase();
-
-              return "00000".substring(0, 6 - c.length) + c;
-          }
-
-          // aqui lo mio
-          const id = this.toId(e)
-          const hash = hashCode(id)
-          const color = intToRGB(hash)
-
-          return color
-      },
+      }
     },
   }
 </script>
