@@ -5,7 +5,7 @@
   "scripts": {
     "fix": "vue-cli-service lint --fix",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build; cp -R dist ../server/dist",
+    "build": "rm -rf ../server/dist; vue-cli-service build; cp -R dist ../server/dist",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
