@@ -1,16 +1,17 @@
 from setuptools import setup
 
 setup(
-    name='TIE final project',
+    name='Beca colaboracion',
     version='1.0',
-    description='Final project for the TIE course during 2019-2020 on USAL',
-    author='Francisco Pinto Santos and Gabriel Martin Blazquez',
-    author_email='franpintosantos@usal.es and gmartinb@usal.es',
+    description='Es una beca de colaboaracion',
+    author='Francisco Pinto Santos',
+    author_email='franpintosantos@usal.es',
     license='see LICENSE.md for details',
-    url="http://tiegandalfran.ddns.net",
     packages=['agents', 'utils'],
     install_requires=[
-        'flask-request-id-header',
+        'py2neo',
+        'pymongo',
+        'spacy==2.2.3',
         'confluent-kafka==1.3.0',
         'vaderSentiment==3.2.1',
         'newsapi-python',

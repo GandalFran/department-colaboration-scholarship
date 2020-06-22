@@ -48,14 +48,13 @@
       "error_file": "/var/log/persistence_agent.log",
       "env": {
         "PERSISTENCE_INPUT_TOPIC": "analysis_output",
-        "MONGO": "",
-        "MONGODB": "",
-        "MONGOCOLLECTION": "",
-        "NEO4J": "",
-        "NEO4JUSER": "",
-        "NEO4JPASSWD": "",
-        "KAFKA_PRODUCER_SETTINGS": "{ \"group.id\": \"colaboracion\", \"bootstrap.servers\": \"backend.novatrends.me:9092\", \"default.topic.config\": { \"auto.offset.reset\": \"earliest\", \"delivery.timeout.ms\": 30000 } }",
-        "KAFKA_CONSUMER_SETTINGS": "{ \"group.id\": \"colaboracion\", \"bootstrap.servers\": \"backend.novatrends.me:9092\", \"default.topic.config\": { \"auto.offset.reset\": \"earliest\", \"delivery.timeout.ms\": 30000 } }"
+        "MONGO": "mongodb://admin:TIETODOSSDDTFG@backend.novatrends.me:27017/?authSource=novatrends",
+        "MONGODB": "novatrends",
+        "MONGOCOLLECTION": "newsitems",
+        "NEO4J": "bolt://backend.novatrends.me:7687",
+        "NEO4JUSER": "neo4j",
+        "NEO4JPASSWD": "TIETODOSSDDTFG",
+        "KAFKA_CONSUMER_SETTINGS": "{ \"group.id\": \"colaboracion\", \"bootstrap.servers\": \"backend.novatrends.me:9092\", \"default.topic.config\": { \"auto.offset.reset\": \"earliest\", \"delivery.timeout.ms\": 30000 } }",
       }
     },
     {

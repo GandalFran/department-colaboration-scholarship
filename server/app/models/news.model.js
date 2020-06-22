@@ -1,10 +1,5 @@
 module.exports = (mongoose) => {
   const schema = mongoose.Schema({
-    date: Date,
-    request: {
-      keywords: String,
-      id: String
-    },
     sentiment: {
       neg: Number,
       pos: Number,
@@ -12,11 +7,9 @@ module.exports = (mongoose) => {
       neu: Number
     },
     author: String,
-    source: String,
     title: String,
-    url: String,
-    content: String
+    url: String
   });
 
-  return mongoose.model('news', schema);
+  return mongoose.model('newsitems', schema);
 };

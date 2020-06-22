@@ -16,15 +16,17 @@ class Agent:
         while True:
             try:
                 message = kafka.read(self._consumer)
-                Agent.LOG.debug(f"received new message {json.loads(message)['request']['id']}")
+                Agent.LOG.debug(f"received new message")
                 if message is not None:
                     results = self.task(message)
                     if results is not None:
                         for result in results:
-                            Agent.LOG.debug(f"responded to message {json.loads(message)['request']['id']}")
+                            Agent.LOG.debug(f"responded to message")
                             kafka.write(self._producer, self._output_topic, result)
-            except:
-                pass
+            except Exception as e:
+                print('error')
+                print(e)
+                raise e
 
     def task(self, message: str) -> List[str]:
         return [message]

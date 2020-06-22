@@ -1,6 +1,7 @@
 import json
 from typing import List
 from agents.agent import Agent
+import spacy
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 
@@ -13,20 +14,26 @@ class AnalysisAgent(Agent):
     def task(self, message: str) -> List[str]:
         article = json.loads(message)
         # sentiment
-        article['sentiment'] = self._analyzer.polarity_scores(article['content'])
+        article['sentiment'] = self._analyzer.polarity_scores(article['text'])
         # ner
-        article['ner'] = self._ner(article['content'])
+        article['ner'] = self._ner(article['text'])
         response = json.dumps(article)
         return [response]
 
-    def _ner(article: str):
-    	clasified = {
-    		'org': []
-    		'people': []
-    	}
-       	ner = spacy.load("en_core_web_sm")
-        result = ner(data.content)
-        for r in result:
+    def _ner(self, article: str):
+        clasified = {
+            'org': [],
+            'people': []
+        }
+        ner = None
+        try:
+           	ner = spacy.load("en_core_web_sm")
+        except:
+            os.system('python3 -m spacy download en_core_web_sm')
+            ner = spacy.load("en_core_web_sm")
+
+        result = ner(article)
+        for r in result.ents:
             if r.label_ == 'ORG':
                 clasified['org'].append(r.text)
             elif r.label_ == 'PERSON':

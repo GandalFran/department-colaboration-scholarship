@@ -1,3 +1,4 @@
+import json
 import utils.kafka_utils as kafka
 
 
@@ -13,9 +14,9 @@ KAFKA_PRODUCER_SETTINGS={
 }
 
 if __name__ == '__main__':
-	proudcer = kafka.build_producer(KAFKA_PRODUCER_SETTINGS)
-    kafka.write(proudcer, KAFKA_OUTPUT_TOPIC, json.dumps({
+    producer = kafka.build_producer(KAFKA_PRODUCER_SETTINGS)
+    kafka.write(producer, KAFKA_OUTPUT_TOPIC, json.dumps({
         "request": {
-            "keywords": 'computer enginieering'
+            "keywords": 'computer science'
         }
     }))      
