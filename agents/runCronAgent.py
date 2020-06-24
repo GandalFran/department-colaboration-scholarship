@@ -2,7 +2,7 @@ import json
 import utils.kafka_utils as kafka
 
 
-KAFKA_OUTPUT_TOPIC='crawling_input'
+KAFKA_OUTPUT_TOPIC='extraction_input'
 KAFKA_PRODUCER_SETTINGS={ 
 	"group.id": "tie", 
 	"bootstrap.servers": 

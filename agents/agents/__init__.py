@@ -1,5 +1,5 @@
 
 from .agent import Agent
-from .crawling_agent import CrawlingAgent
-from .scraping_agent import ScrapingAgent
+from .extraction_agent import ExtractionAgent
+from .download_agent import DownloadAgent
 from .analysis_agent import AnalysisAgent

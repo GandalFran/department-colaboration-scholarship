@@ -13,11 +13,24 @@
         cols="12"
         md="10"
       >
-        <v-card
-          raised
-        >
+        <v-img
+            contain
+            src="/img/diaLogo.png"
+            max-height="290px"
+          />
+      </v-col>
+    </v-row>
+
+
+    <v-row
+      align="center"
+      justify="center"
+    >
+      <v-col
+        cols="12"
+        md="10"
+      >
         <entities :entities="entitiesItems"/>
-        </v-card>
       </v-col>
     </v-row>
 

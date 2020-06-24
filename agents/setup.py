@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='Beca colaboracion',
     version='1.0',
-    description='Es una beca de colaboaracion',
+    description='Proyecto para la beca de colaboaracion',
     author='Francisco Pinto Santos',
     author_email='franpintosantos@usal.es',
     license='see LICENSE.md for details',

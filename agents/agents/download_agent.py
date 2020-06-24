@@ -6,7 +6,7 @@ from lxml.html import fromstring
 from lxml.html.clean import clean_html
 
 
-class ScrapingAgent(Agent):
+class DownloadAgent(Agent):
 
     def task(self, message: str) -> List[str]:
         # get list of articles

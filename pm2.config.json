@@ -1,28 +1,28 @@
 {
   "apps" : [
     {
-      "name": "crawling_agent",
+      "name": "extraction_agent",
       "interpreter": "/usr/bin/python3",
-      "script": "agents/runCrawlingAgent.py",
-      "out_file": "/var/log/crawling_agent.log",
-      "error_file": "/var/log/crawling_agent.log",
+      "script": "agents/runExtractionAgent.py",
+      "out_file": "/var/log/extraction_agent.log",
+      "error_file": "/var/log/extraction_agent.log",
       "env": {
-        "CRAWLING_INPUT_TOPIC": "crawling_input",
-        "CRAWLING_OUTPUT_TOPIC": "scraping_input",
-        "CRAWLING_API_KEY": "2731f536da454d7a918b9139efa40bb8",
+        "EXTRACTION_INPUT_TOPIC": "extraction_input",
+        "EXTRACTION_OUTPUT_TOPIC": "download_input",
+        "EXTRACTION_API_KEY": "2731f536da454d7a918b9139efa40bb8",
         "KAFKA_PRODUCER_SETTINGS": "{ \"group.id\": \"colaboracion\", \"bootstrap.servers\": \"backend.novatrends.me:9092\", \"default.topic.config\": { \"auto.offset.reset\": \"earliest\", \"delivery.timeout.ms\": 30000 } }",
         "KAFKA_CONSUMER_SETTINGS": "{ \"group.id\": \"colaboracion\", \"bootstrap.servers\": \"backend.novatrends.me:9092\", \"default.topic.config\": { \"auto.offset.reset\": \"earliest\", \"delivery.timeout.ms\": 30000 } }"
       }
     },
     {
-      "name": "scraping_agent",
+      "name": "download_agent",
       "interpreter": "/usr/bin/python3",
-      "script": "agents/runScrapingAgent.py",
-      "out_file": "/var/log/scraping_agent.log",
-      "error_file": "/var/log/scraping_agent.log",
+      "script": "agents/runDownloadAgent.py",
+      "out_file": "/var/log/download_agent.log",
+      "error_file": "/var/log/download_agent.log",
       "env": {
-        "SCRAPING_INPUT_TOPIC": "scraping_input",
-        "SCRAPING_OUTPUT_TOPIC": "analysis_input",
+        "DOWNLOAD_INPUT_TOPIC": "download_input",
+        "DOWNLOAD_OUTPUT_TOPIC": "analysis_input",
         "KAFKA_PRODUCER_SETTINGS": "{ \"group.id\": \"colaboracion\", \"bootstrap.servers\": \"backend.novatrends.me:9092\", \"default.topic.config\": { \"auto.offset.reset\": \"earliest\", \"delivery.timeout.ms\": 30000 } }",
         "KAFKA_CONSUMER_SETTINGS": "{ \"group.id\": \"colaboracion\", \"bootstrap.servers\": \"backend.novatrends.me:9092\", \"default.topic.config\": { \"auto.offset.reset\": \"earliest\", \"delivery.timeout.ms\": 30000 } }"
       }
@@ -35,7 +35,7 @@
       "error_file": "/var/log/analysis_agent.log",
       "env": {
         "ANALYSIS_INPUT_TOPIC": "analysis_input",
-        "ANALYSIS_OUTPUT_TOPIC": "analysis_output",
+        "ANALYSIS_OUTPUT_TOPIC": "persistence_input",
         "KAFKA_PRODUCER_SETTINGS": "{ \"group.id\": \"colaboracion\", \"bootstrap.servers\": \"backend.novatrends.me:9092\", \"default.topic.config\": { \"auto.offset.reset\": \"earliest\", \"delivery.timeout.ms\": 30000 } }",
         "KAFKA_CONSUMER_SETTINGS": "{ \"group.id\": \"colaboracion\", \"bootstrap.servers\": \"backend.novatrends.me:9092\", \"default.topic.config\": { \"auto.offset.reset\": \"earliest\", \"delivery.timeout.ms\": 30000 } }"
       }
@@ -47,7 +47,7 @@
       "out_file": "/var/log/persistence_agent.log",
       "error_file": "/var/log/persistence_agent.log",
       "env": {
-        "PERSISTENCE_INPUT_TOPIC": "analysis_output",
+        "PERSISTENCE_INPUT_TOPIC": "persistence_input",
         "MONGO": "mongodb://admin:TIETODOSSDDTFG@backend.novatrends.me:27017/?authSource=novatrends",
         "MONGODB": "novatrends",
         "MONGOCOLLECTION": "newsitems",

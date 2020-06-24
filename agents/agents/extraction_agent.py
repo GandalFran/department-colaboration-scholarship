@@ -4,7 +4,7 @@ from agents.agent import Agent
 from newsapi import NewsApiClient
 
 
-class CrawlingAgent(Agent):
+class ExtractionAgent(Agent):
 
     def __init__(self, api_key: str, producer_settings, consumer_settings, input_topic, output_topic):
         super().__init__(producer_settings, consumer_settings, input_topic, output_topic)
